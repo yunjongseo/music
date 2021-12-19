@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,11 @@ import com.netmusic.common.ChabunUtil;
 import com.netmusic.common.CommonUtils;
 import com.netmusic.common.FileUploadUtil;
 import com.netmusic.common.service.ChabunService;
+import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.service.NetMemberService;
 import com.netmusic.member.vo.NetMemberVO;
+
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 public class NetMemberController {
@@ -45,7 +49,7 @@ public class NetMemberController {
 	// 회원가입 
 	@RequestMapping(value="memInsert", method=RequestMethod.POST)
 	public String memInsert(HttpServletRequest req) {
-		logger.info("NetMemberController memInsert() 함수 진입 >>> : ");
+		logger.info("NetMemberController memInsert() 진입 >>> : ");
 		
 		// 채번 구하기
 		String mb_num = ChabunUtil.getMemChabun("D", chabunService.getMemChabun().getMb_num());
@@ -114,7 +118,7 @@ public class NetMemberController {
 	@RequestMapping(value="memIdCheck", method=RequestMethod.POST)
 	@ResponseBody
 	public Object memIdCheck(NetMemberVO mvo) {
-		logger.info("NetMemberController memIdCheck 함수 진입  >>> :");		
+		logger.info("NetMemberController memIdCheck 진입  >>> :");		
 		logger.info("NetMemberController memIdCheck mvo.getMb_id() >>> : " + mvo.getMb_id());			
 		
 
@@ -126,5 +130,45 @@ public class NetMemberController {
 		else { msg = "ID_NO";}  
 		
 		return msg;		
+	}
+	
+	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
+	public String memberSelectAll(NetMemberVO mvo, Model model) {
+		logger.info("NetMemberController memberSelectAll() 진입 >>> : ");
+		
+		logger.info("NetMemberController memberSelectAll() 진입 >>> : "
+				+ "검색 관련 로그 ==========");
+		logger.info("NetMemberController memberSelectAll bvo.getKeyfilter() >>> : " 
+						+ mvo.getKeyfilter());
+		logger.info("NetMemberController memberSelectAll bvo.getKeyword() >>> : " 
+						+ mvo.getKeyword());
+		
+		List<NetMemberVO> listAll = netMemberService.memberSelectAll(mvo);
+		logger.info("NetMemberController memberSelectAll listAll.size() >>> : " 
+					+ listAll.size());
+		
+		if(listAll.size() > 0) {
+			
+			model.addAttribute("listAll", listAll);
+			return "main/search";
+		}
+		return "board/springBoardSelectAllfail";
+	}
+	
+	@RequestMapping(value="memberSelect", method=RequestMethod.GET)
+	public String memberSelect(NetMemberVO mvo, Model model) {
+		logger.info("NetMemberController memberSelect() 진입 >>> : ");
+		logger.info("NetMemberController memberSelect mvo.getMb_num() >>> : "
+					+ mvo.getMb_num());
+		
+		List<NetMemberVO> listS = netMemberService.memberSelect(mvo);
+		logger.info("NetMemberController memberSelect listS.size() >>> : " +
+		listS.size());
+		
+		if(listS.size() == 1) {
+			model.addAttribute("listS", listS);
+			return "member/memberSelect";
+		}
+		return "/";
 	}
 }

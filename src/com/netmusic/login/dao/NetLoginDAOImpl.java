@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.netmusic.login.vo.NetLoginVO;
 import com.netmusic.login.vo.TempAuthNumVO;
 import com.netmusic.login.vo.TempPwVO;
 import com.netmusic.member.vo.NetMemberVO;
@@ -19,11 +20,11 @@ public class NetLoginDAOImpl implements NetLoginDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<NetMemberVO> loginCheck(NetMemberVO mvo) {
+	public List<NetLoginVO> loginCheck(NetLoginVO lvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetLoginDAOImpl loginCheck() 함수 진입 >>> :");
 		
-		return sqlSession.selectList("loginCheck", mvo);
+		return sqlSession.selectList("loginCheck", lvo);
 	}
 
 	@Override

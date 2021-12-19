@@ -44,4 +44,31 @@
 		WHERE 	MB_DELYN = 'Y'
 		AND     A.MB_ID = #{mb_id, jdbcType=VARCHAR}
 	</select>
+	
+	<select id="memberSelectAll" parameterType="memberVO" resultType="memberVO">
+		
+		SELECT	*	
+		FROM	NET_MEMBER A
+		WHERE	A.MB_DELYN  ='Y'
+		<if test="keyfilter=='key1'">
+			<![CDATA[AND A.MB_ID LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		</if>
+		<if test="keyfilter=='key2'">
+			<![CDATA[AND A.MB_NAME LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		</if>
+		ORDER BY 1
+	</select>
+	
+	<select id="memberSelect" parameterType="memberVO" resultType="memberVO">
+		SELECT	 A.MB_NUM		MB_NUM
+				,A.MB_ID		MB_ID
+				,A.MB_NAME		MB_NAME
+				,A.MB_GENDER	MB_GENDER
+				,A.MB_PHOTO		MB_PHOTO
+				,TO_CHAR(A.MB_INSDATE, 'YYYY-MM-DD') MB_INSDATE
+				,TO_CHAR(A.MB_UPDDATE, 'YYYY-MM-DD') MB_UPDDATE
+		FROM 	NET_MEMBER A 
+		WHERE 	A.MB_DELYN='Y' 
+		AND 	A.MB_NUM = #{mb_num, jdbcType=VARCHAR}
+	</select>
 </mapper>

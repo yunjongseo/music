@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 					
-<mapper namespace="a.b.c.com.login.dao.NetLoginDAO">
+<mapper namespace="com.netmusic.login.dao.NetLoginDAO">
 
 	<select id="loginCheck" parameterType="memberVO" resultType="memberVO">
 		SELECT	A.MB_ID	MB_ID,
@@ -27,7 +27,7 @@
 		<selectKey keyProperty="anum" resultType="int" order="BEFORE">
 			SELECT AUTHNUM_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO TEMP_AUTH_NUM	(ANUM, AUTHNUM, MB_EMAIL, MB_INSDATE)
+		INSERT INTO TEMP_AUTH_NUM1	(ANUM, AUTHNUM, MB_EMAIL, MB_INSDATE)
 							VALUES	(#{anum, jdbcType=INTEGER}, 
 									 #{authnum, jdbcType=VARCHAR},
 									 #{mb_email, jdbcType=VARCHAR}, 
@@ -38,7 +38,7 @@
 		SELECT	A.MB_ID			MB_ID,
 				A.MB_INSDATE	MB_INSDATE
 		FROM	NET_MEMBER A,
-				TEMP_AUTH_NUM B
+				TEMP_AUTH_NUM1 B
 		WHERE	A.MB_DELYN = 'Y'
 		AND		A.MB_EMAIL   = B.MB_EMAIL
 		AND		B.MB_EMAIL   = #{tempauthmemail, jdbcType=VARCHAR}
@@ -64,9 +64,9 @@
 	
 	<insert id="tempPwInsert" parameterType="pwVO">
 		<selectKey keyProperty="pnum" resultType="String" order="BEFORE">
-			SELECT LPAD((NVL(MAX(A.PNUM), 0)) + 1, 8, '0') PNUM FROM TEMP_PW A
+			SELECT LPAD((NVL(MAX(A.PNUM), 0)) + 1, 8, '0') PNUM FROM TEMP_PW1 A
 		</selectKey>
-		INSERT INTO TEMP_PW (PNUM, PTEMPPW, MB_ID, MB_INSDATE)
+		INSERT INTO TEMP_PW1 (PNUM, PTEMPPW, MB_ID, MB_INSDATE)
 					VALUES	(#{pnum, jdbcType=VARCHAR},
 							 #{ptemppw, jdbcType=VARCHAR},
 							 #{mb_id, jdbcType=VARCHAR},

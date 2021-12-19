@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.netmusic.login.dao.NetLoginDAO;
+import com.netmusic.login.vo.NetLoginVO;
 import com.netmusic.login.vo.TempAuthNumVO;
 import com.netmusic.login.vo.TempPwVO;
 import com.netmusic.member.vo.NetMemberVO;
@@ -25,11 +26,11 @@ public class NetLoginServiceImpl implements NetLoginService {
 	}
 	
 	@Override
-	public List<NetMemberVO> loginCheck(NetMemberVO mvo) {
+	public List<NetLoginVO> loginCheck(NetLoginVO lvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetLoginServiceImpl loginCheck() 함수 진입 >>> :");
 		
-		return netLoginDAO.loginCheck(mvo);
+		return netLoginDAO.loginCheck(lvo);
 	}
 	
 	@Override

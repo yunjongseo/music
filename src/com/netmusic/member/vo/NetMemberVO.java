@@ -19,6 +19,10 @@ public class NetMemberVO {
 	private String mb_upddate;
 	private String mb_delyn;
 	
+	// 검색 구분자 및 검색어
+	private String keyfilter;
+	private String keyword;
+		
 	// 생성자
 	public NetMemberVO() {
 	
@@ -28,7 +32,7 @@ public class NetMemberVO {
 						String mb_name, String mb_gender, String mb_birth,
 						String mb_hp, String mb_email, String mb_photo, 
 						String mb_liking, String mb_insdate, String mb_upddate,
-						String mb_delyn) {
+						String mb_delyn, String keyfilter, String keyword) {
 		this.mb_num = mb_num;
 		this.mb_id = mb_id;
 		this.mb_pw = mb_pw;
@@ -42,6 +46,8 @@ public class NetMemberVO {
 		this.mb_insdate = mb_insdate;
 		this.mb_upddate = mb_upddate;
 		this.mb_delyn = mb_delyn;
+		this.keyfilter = keyfilter;
+		this.keyword = keyword;
 	}
 
 	// getter
@@ -85,6 +91,13 @@ public class NetMemberVO {
 		return mb_delyn;
 	}
 	
+	public String getKeyfilter() {
+		return keyfilter;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	
 	// setter
 	public void setMb_num(String mb_num) {
 		this.mb_num = mb_num;
@@ -124,6 +137,13 @@ public class NetMemberVO {
 	}
 	public void setMb_delyn(String mb_delyn) {
 		this.mb_delyn = mb_delyn;
+	}
+	
+	public void setKeyfilter(String keyfilter) {
+		this.keyfilter = keyfilter;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 	// 매개변수 확인

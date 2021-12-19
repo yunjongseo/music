@@ -2,13 +2,14 @@ package com.netmusic.login.service;
 
 import java.util.List;
 
+import com.netmusic.login.vo.NetLoginVO;
 import com.netmusic.login.vo.TempAuthNumVO;
 import com.netmusic.login.vo.TempPwVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 public interface NetLoginService {
 
-	public List<NetMemberVO> loginCheck(NetMemberVO mvo);
+	public List<NetLoginVO> loginCheck(NetLoginVO lvo);
 	
 	// 이메일로 ID 찾기
 	// 1. 이메일 체크

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.dao.NetMemberDAO;
 import com.netmusic.member.vo.NetMemberVO;
 
@@ -31,11 +32,26 @@ public class NetMemberServiceImpl implements NetMemberService {
 	}
 
 	@Override
+	public List<NetMemberVO> memberSelectAll(NetMemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMemberServiceImpl memberSelectAll() 진입 >>> : ");
+		
+		return netMemberDAO.memberSelectAll(mvo);
+	}
+	
+	@Override
+	public List<NetMemberVO> memberSelect(NetMemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMemberServiceImpl memberSelect() 진입 >>> : ");
+		
+		return netMemberDAO.memberSelect(mvo);
+	}
+	
+	@Override
 	public List<NetMemberVO> memberIdCheck(NetMemberVO mvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetMemberServiceImpl memberIdCheck() 진입 >>> : ");
 		
 		return netMemberDAO.memberIdCheck(mvo);
 	}
-
 }

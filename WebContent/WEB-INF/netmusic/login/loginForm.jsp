@@ -21,6 +21,91 @@
     	color:black;
     }
 </style>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		/* $("#mb_id").attr("placeholder", "아이디 ");
+		$("#mb_pw").attr("placeholder", "비밀번호 ");
+		
+		$("#btn").click(function(){
+			console.log("btn >>> : ");
+			
+			$("#loginForm").attr({
+				"action":"login.a",
+				"method":"POST",
+				"enctype":"application/x-www-form-urlencoded"
+			}).submit();
+		}); */
+	
+	
+		$("#btn").click(function(){
+	
+			/////////////////////////////////////////////////////////////////////////
+			// null check
+			if ('' == $("#mb_id").val() || 
+				'' == $("#mb_pw").val()){
+				$("#mb_id").val('');
+				$("#mb_pw").val('');
+				
+				alert("아이디 / 비밀번호를 입력해주세요.");
+				return
+			}
+			
+			var mb_id = $("#mb_id").val();
+			console.log("mb_id >>> : " + mb_id);
+			var mb_pw = $("#mb_pw").val();
+			console.log("mb_pw >>> : " + mb_pw);
+			alert("데이터 전달 >>> : " + mb_id +" : "+ mb_pw);
+			// callAjaxLogin()함수 호출
+			callAjaxLogin(mb_id, mb_pw);
+			
+		});
+		
+		// callAjaxLogin() 함수
+		function callAjaxLogin(mb_id, mb_pw){
+			
+			alert(mb_id +" : "+ mb_pw);
+
+			let loginURL = "loginMsg.a";
+			let reqType = "POST";
+			let dataParam = { 
+					mb_id : mb_id,
+					mb_pw : mb_pw
+			};
+			
+			$.ajax({
+				url : loginURL,
+				type : reqType,
+				data : dataParam,
+				contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+				success : whenSuccess,
+				error : whenError
+			});
+				
+			function whenSuccess(resData){
+				alert("회원 데이터 확인 결과 >>> : " + resData);
+					
+				 if (resData == "success") {
+					
+					alert("로그인 성공!")
+					location.href="good.a";
+					return dataParam 
+					
+				} else if (resData == "fail" || resData == null) {
+					
+					alert("로그인 실패 : 아이디 / 비밀번호를 다시 확인해주세요.");
+				}	
+			}
+				
+			function whenError(e){
+				$("#mb_id").val("");
+				$("#mb_pw").val("");
+				alert("에러가 발생했습니다. >>> : " + e.responseText);
+			}
+				
+		}
+	});
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -45,6 +130,9 @@
 	</tr>
 	<tr>
 		<td align="right" colspan="2">
+			<a href="memForm.a">
+				<font size="2">회원가입</font>
+			</a> | 
 			<a href="idFindForm.a">
 				<font size="2">아이디 찾기</font>
 			</a> | 

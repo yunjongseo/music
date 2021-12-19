@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 @Repository
@@ -24,6 +25,22 @@ public class NetMemberDAOImpl implements NetMemberDAO {
 		return (Integer)sqlSession.insert("memberInsert", mvo);
 	}
 
+	@Override
+	public List<NetMemberVO> memberSelectAll(NetMemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMemberDAOImpl memberSelectAll() 진입 >>> : ");
+		
+		return sqlSession.selectList("memberSelectAll", mvo);
+	}
+	
+	@Override
+	public List<NetMemberVO> memberSelect(NetMemberVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMemberDAOImpl memberSelect() 진입 >>> : ");
+		
+		return sqlSession.selectList("memberSelect", mvo);
+	}
+	
 	@Override
 	public List<NetMemberVO> memberIdCheck(NetMemberVO mvo) {
 		// TODO Auto-generated method stub
