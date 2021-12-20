@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,10 @@ import com.netmusic.common.ChabunUtil;
 import com.netmusic.common.CommonUtils;
 import com.netmusic.common.FileUploadUtil;
 import com.netmusic.common.service.ChabunService;
+import com.netmusic.login.vo.NetLoginVO;
 import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.service.NetMemberService;
+import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
@@ -101,7 +104,7 @@ public class NetMemberController {
 		String[] liking = fu.getparameterValues("mb_liking");
 		String mb_liking = "";
 		for(int i=0; i < liking.length; i++) {
-			mb_liking += liking[i] + ",";
+			mb_liking += liking[i] + " ";
 		}
 		mvo.setMb_liking(mb_liking);
 		
@@ -132,6 +135,7 @@ public class NetMemberController {
 		return msg;		
 	}
 	
+	// 회원 전체 조회
 	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
 	public String memberSelectAll(NetMemberVO mvo, Model model) {
 		logger.info("NetMemberController memberSelectAll() 진입 >>> : ");
@@ -155,6 +159,7 @@ public class NetMemberController {
 		return "board/springBoardSelectAllfail";
 	}
 	
+	// 회원 조건 조회
 	@RequestMapping(value="memberSelect", method=RequestMethod.GET)
 	public String memberSelect(NetMemberVO mvo, Model model) {
 		logger.info("NetMemberController memberSelect() 진입 >>> : ");
@@ -168,6 +173,33 @@ public class NetMemberController {
 		if(listS.size() == 1) {
 			model.addAttribute("listS", listS);
 			return "member/memberSelect";
+		}
+		return "/";
+	}
+	
+	// 내 팔로우 리스트
+	@RequestMapping(value="memfollowSelect", method=RequestMethod.GET)
+	public String memfollowSelect(NetFollowVO fvo, Model model, HttpSession hs) {
+		logger.info("NetMemberController memfollowSelect() 진입 >>> : ");
+		
+		// 세션에 있는 회원 아이디를 받음 -> mb_id 저장
+		NetLoginVO lvo_data = (NetLoginVO)hs.getAttribute("resultList"); 
+		String mb_id = lvo_data.getMb_id();
+		 
+		
+		//String mb_id = "1515";
+		
+		logger.info("NetMemberController memfollowSelect mb_id >>> : " + mb_id);
+		
+		fvo.setMb_id(mb_id);
+		
+		List<NetFollowVO> listS = netMemberService.memFollowSelect(fvo);
+		logger.info("NetMemberController memfollowSelect listS.size() >>> : " +
+		listS.size());
+		
+		if(listS.size() != 0) {
+			model.addAttribute("listS", listS);
+			return "member/memberfollow";
 		}
 		return "/";
 	}

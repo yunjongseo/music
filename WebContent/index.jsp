@@ -9,5 +9,6 @@
 <body>
 <a href="memForm.a">회원가입</a>
 <a href="loginForm.a">로그인</a>
+<a href="memfollowSelect.a">팔로우 리스트</a>
 </body>
 </html>

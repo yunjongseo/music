@@ -65,10 +65,21 @@
 				,A.MB_NAME		MB_NAME
 				,A.MB_GENDER	MB_GENDER
 				,A.MB_PHOTO		MB_PHOTO
+				,A.MB_LIKING	MB_LIKING
 				,TO_CHAR(A.MB_INSDATE, 'YYYY-MM-DD') MB_INSDATE
 				,TO_CHAR(A.MB_UPDDATE, 'YYYY-MM-DD') MB_UPDDATE
 		FROM 	NET_MEMBER A 
 		WHERE 	A.MB_DELYN='Y' 
 		AND 	A.MB_NUM = #{mb_num, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="memFollowSelect" parameterType="followVO" resultType="followVO">
+		SELECT	 A.MB_ID		MB_ID
+				,A.MB_FOLLOW	MB_FOLLOW
+				,TO_CHAR(A.MB_INSDATE, 'YYYY-MM-DD') MB_INSDATE
+				,TO_CHAR(A.MB_UPDDATE, 'YYYY-MM-DD') MB_UPDDATE
+		FROM 	NET_FOLLOW A 
+		WHERE 	A.MB_DELYN='Y' 
+		AND 	A.MB_ID = #{mb_id, jdbcType=VARCHAR}
 	</select>
 </mapper>

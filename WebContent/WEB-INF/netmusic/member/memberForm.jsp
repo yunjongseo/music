@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
 	.wrap{
-		width:600px;
+		width:800px;
 		height:600px;
 		margin:40px auto;
 	}

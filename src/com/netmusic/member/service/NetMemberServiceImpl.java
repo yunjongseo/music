@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.dao.NetMemberDAO;
+import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 @Service
@@ -45,6 +46,14 @@ public class NetMemberServiceImpl implements NetMemberService {
 		logger.info("NetMemberServiceImpl memberSelect() 진입 >>> : ");
 		
 		return netMemberDAO.memberSelect(mvo);
+	}
+	
+	@Override
+	public List<NetFollowVO> memFollowSelect(NetFollowVO fvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMemberServiceImpl memFollowSelect() 진입 >>> : ");
+		
+		return netMemberDAO.memFollowSelect(fvo);
 	}
 	
 	@Override

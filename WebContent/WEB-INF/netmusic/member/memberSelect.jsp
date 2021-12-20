@@ -7,67 +7,66 @@
 <head>
 <meta charset="UTF-8">
 <title>셀렉트</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
 
+	.wrap{
+		width:800px;
+		height:600px;
+		margin:40px auto;
+	}
+	
 	body {
-			color: white;
-		}
-		p.logo {
-			background: transparent;
-			color: red; 
-			text-align: left;
-			font-size: 40px;
-			margin-top: 0px;
-			margin-left: 10px;
-		}
-		div.profile-aria{
-			/*레이아웃 설정*/
-			position:absolute;
-			top:50%;
-			left:50%;
-			transform:translate(-50%, -50%)
-		}
-		p.tv {
-			
-		}
-		li {
-			/*list 가로 배열*/
-			float: left; 
-			/* 문장 앞에 있는 마커 설정을 없앰; */
-			list-style: none; 
-			/* 줄바꿈 설정 */
-			display: block;
-			text-align: center;
-			font-size: 28px;
-			margin-bottom: 10px;
-			margin-left: 25px;
-		}
-		div.profile {
-			width: 150px; 
-			height: 200px; 
-			background: transparent;
-		}
-		div.profile-card{
-			width: 150px; 
-			height: 150px;
-			background: white;
-		}
-		p.profile-card {
-			color: white; 
-			text-align: center;
-		}
-		div.button {
-			width: 120px;
-			height: 30px;
-			margin-left: 45%; 
-			margin-top: 30%;
-			text-align: center;
-			padding: 5px;
-			border: 1px solid white;
-		}
+		color: black;
+	}
+	p.logo {
+		background: transparent;
+		color: red; 
+		text-align: left;
+		font-size: 40px;
+		margin-top: 0px;
+		margin-left: 10px;
+	}
+	div.profile-aria{
+		/*레이아웃 설정*/
+		position:absolute;
+		top:30%;
+		left:50%;
+		transform:translate(-50%, -50%)
+	}
+	p.tv {
+		
+	}
+	li {
+		/*list 가로 배열*/
+		float: left; 
+		/* 문장 앞에 있는 마커 설정을 없앰; */
+		list-style: none; 
+		/* 줄바꿈 설정 */
+		display: block;
+		text-align: center;
+		font-size: 28px;
+		margin-bottom: 10px;
+		margin-left: 25px;
+	}
+	div.profile {
+		width: 150px; 
+		height: 200px; 
+		background: transparent;
+	}
+	div.profile-card{
+		width: 150px; 
+		height: 150px;
+		background: black;
+	}
+	p.profile-card {
+		color: gray; 
+		text-align: center;
+	}
 </style>
 </head>
-<body bgcolor="black">
+<body>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	Object obj = request.getAttribute("listS");
@@ -79,7 +78,7 @@
 	NetMemberVO mvo = new NetMemberVO();
 %>
 <form>
-	<div>
+	<div class="wrap">
 		<!-- 넷 뮤직 로고 -->
 		<div>
 			<p class="logo">NetMusic</p>
@@ -94,12 +93,27 @@
 							<%-- <img src="netmusic/fileupload/member/sm_<%= mvo.getMb_photo() %>"> --%>
 						</div>
 						<p class="profile-card"><%= list.get(0).getMb_name() %></p>
+						<button class="btn" id="btn" type="button">
+						<img class="btn-img" src="img\follow.jfif">follow</button>
+						<a href="memfollowSelect.a">Follow List</a>
 					</div>
 				</li>
 				</ul>
 			</div>
 		</div>
+		<div style="margin-top:400px; width:100%; float:left; text-align:center;">
+		<table class="table table-hover" align="center">
+			<tr>
+				<td>취향</td>
+				<td><%= list.get(0).getMb_liking() %></td>
+			</tr>
+		</table>
+		</div>
+<!-- 		<div class="side" align="center" style="margin-top:400px; height:100%; float:left; border-top:solid gray; border-left:solid gray;">
+
+		</div> -->
 	</div>
 </form>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </html>

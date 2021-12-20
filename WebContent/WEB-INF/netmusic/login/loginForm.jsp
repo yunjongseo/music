@@ -110,7 +110,7 @@
 <body>
 <div class="wrap">
 <form name="loginForm" id="loginForm">
-<table border="1" align="center">
+<table class="table table-hover" align="center">
 	<tr>
 		<td>아이디&nbsp;&nbsp;</td>
 		<td>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.netmusic.main.vo.NetMainVO;
+import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 @Repository
@@ -39,6 +40,14 @@ public class NetMemberDAOImpl implements NetMemberDAO {
 		logger.info("NetMemberDAOImpl memberSelect() 진입 >>> : ");
 		
 		return sqlSession.selectList("memberSelect", mvo);
+	}
+	
+	@Override
+	public List<NetFollowVO> memFollowSelect(NetFollowVO fvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMemberDAOImpl memFollowSelect() 진입 >>> : ");
+		
+		return sqlSession.selectList("memFollowSelect", fvo);
 	}
 	
 	@Override

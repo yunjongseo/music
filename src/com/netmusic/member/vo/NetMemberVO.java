@@ -15,6 +15,7 @@ public class NetMemberVO {
 	private String mb_email;
 	private String mb_photo;
 	private String mb_liking;
+	private String mb_follow;
 	private String mb_insdate;
 	private String mb_upddate;
 	private String mb_delyn;
@@ -32,7 +33,8 @@ public class NetMemberVO {
 						String mb_name, String mb_gender, String mb_birth,
 						String mb_hp, String mb_email, String mb_photo, 
 						String mb_liking, String mb_insdate, String mb_upddate,
-						String mb_delyn, String keyfilter, String keyword) {
+						String mb_delyn, String keyfilter, String keyword,
+						String mb_follow) {
 		this.mb_num = mb_num;
 		this.mb_id = mb_id;
 		this.mb_pw = mb_pw;
@@ -43,6 +45,7 @@ public class NetMemberVO {
 		this.mb_email = mb_email;
 		this.mb_photo = mb_photo;
 		this.mb_liking = mb_liking;
+		this.mb_follow = mb_follow;
 		this.mb_insdate = mb_insdate;
 		this.mb_upddate = mb_upddate;
 		this.mb_delyn = mb_delyn;
@@ -80,6 +83,9 @@ public class NetMemberVO {
 	}
 	public String getMb_liking() {
 		return mb_liking;
+	}
+	public String getMb_follow() {
+		return mb_follow;
 	}
 	public String getMb_insdate() {
 		return mb_insdate;
@@ -129,6 +135,9 @@ public class NetMemberVO {
 	public void setMb_liking(String mb_liking) {
 		this.mb_liking = mb_liking;
 	}
+	public void setMb_follow(String mb_follow) {
+		this.mb_follow = mb_follow;
+	}
 	public void setMb_insdate(String mb_insdate) {
 		this.mb_insdate = mb_insdate;
 	}
@@ -160,6 +169,7 @@ public class NetMemberVO {
 		logger.info("mb_email >>> : " + mvo.getMb_email());
 		logger.info("mb_photo >>> : " + mvo.getMb_photo());
 		logger.info("mb_liking >>> : " + mvo.getMb_liking());
+		logger.info("mb_follow >>> : " + mvo.getMb_follow());
 		logger.info("mb_insdate >>> : " + mvo.getMb_insdate());
 		logger.info("mb_upddate >>> : " + mvo.getMb_upddate());
 		logger.info("mb_delyn >>> : " + mvo.getMb_delyn());

@@ -54,7 +54,8 @@ public class NetLoginController {
 		String mb_pw = lvo.getMb_pw();
 		logger.info("로그인한 PW >>>> : " + mb_pw);
 		
-		
+		// 세션에 세팅
+		hs.setAttribute("resultList", lvo);
 		// 리스트 세팅
 		List<NetLoginVO> resultList = null;
 		
@@ -62,9 +63,6 @@ public class NetLoginController {
 		System.out.println("resultList >>> : DB에서 리턴된 리스트의 사이즈를 출력합니다 : " + resultList.size());
 
 		if (resultList.size() > 0) {
-			
-			// 세션에 세팅
-			hs.setAttribute("resultList", resultList);
 
 			msg = "success";
 

@@ -42,10 +42,18 @@
 		width: 150px; 
 		height: 150px;
 		background: black;
+		float:center;
 	}
 	p.profile-card {
 		color: gray; 
-		text-align: center;
+	}
+	
+	.profile-1{
+		
+	}
+	
+	a{
+		float:right;
 	}
 </style>
 <script type="text/javascript">
@@ -74,7 +82,7 @@
 %>
 <form name="searchForm" id="searchForm">
 <div class="wrap">
-<table align="center">
+<table class="table table-hover" align="center">
 <thead>
 	<tr>
 		<td colspan="10" align="center">
@@ -96,20 +104,18 @@
 	for(int i=0; i < nCnt; i++){
 		NetMemberVO mvo = list.get(i);
 %>
-<tbody>
-	<div>
-		<ul>
-		<li>
-			<div class="profile">
-				<div class="profile-card">
-					<%-- <img src="netmusic/fileupload/member/sm_<%= mvo.getMb_photo() %>"> --%>
-				</div>
-				<a href="memberSelect.a?mb_num=<%=mvo.getMb_num() %>"><%=mvo.getMb_name() %></a>
+<div class="profile-1">
+	<ul>
+	<li>
+		<div class="profile">
+			<div class="profile-card">
+				<%-- <img src="netmusic/fileupload/member/sm_<%= mvo.getMb_photo() %>"> --%>
 			</div>
-		</li>
-		</ul>
-	</div>
-</tbody>
+			<a href="memberSelect.a?mb_num=<%=mvo.getMb_num() %>"><%=mvo.getMb_name() %></a>
+		</div>
+	</li>
+	</ul>
+</div>
 <%
 	} // end of for
 %>
