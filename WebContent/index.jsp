@@ -7,8 +7,8 @@
 <title>Net Music</title>
 </head>
 <body>
-<a href="memForm.a">회원가입</a>
-<a href="loginForm.a">로그인</a>
-<a href="memfollowSelect.a">팔로우 리스트</a>
+<a href="memForm.a">회원가입</a><br>
+<a href="loginForm.a">로그인</a><br>
+<a href="idFindForm.a">아이디 찾기</a>
 </body>
 </html>

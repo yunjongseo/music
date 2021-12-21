@@ -24,23 +24,9 @@
 <script type="text/javascript">
 	
 	$(document).ready(function(){
-		/* $("#mb_id").attr("placeholder", "아이디 ");
-		$("#mb_pw").attr("placeholder", "비밀번호 ");
-		
-		$("#btn").click(function(){
-			console.log("btn >>> : ");
-			
-			$("#loginForm").attr({
-				"action":"login.a",
-				"method":"POST",
-				"enctype":"application/x-www-form-urlencoded"
-			}).submit();
-		}); */
-	
-	
+
 		$("#btn").click(function(){
 	
-			/////////////////////////////////////////////////////////////////////////
 			// null check
 			if ('' == $("#mb_id").val() || 
 				'' == $("#mb_pw").val()){
@@ -88,7 +74,7 @@
 				 if (resData == "success") {
 					
 					alert("로그인 성공!")
-					location.href="good.a";
+					location.href="loginsuccess.a";
 					return dataParam 
 					
 				} else if (resData == "fail" || resData == null) {

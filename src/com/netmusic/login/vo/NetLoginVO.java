@@ -1,43 +1,62 @@
 package com.netmusic.login.vo;
 
-public class NetLoginVO {
+import org.apache.log4j.Logger;
 
-	private String mb_id;
-	private String mb_pw;
-	private	String mb_num;
+public class NetLoginVO {
+	private static Logger logger = Logger.getLogger(NetLoginVO.class);
 	
-	// 생성자
+	private String pnum;
+	private String ptemppw;
+	private String mb_id;
+	private String mb_insdate;
+	
 	public NetLoginVO() {
 
 	}
 	
-	public NetLoginVO(String mb_id, String mb_pw, String mb_num) {
-
+	public NetLoginVO(String pnum, String ptemppw, 
+					  String mb_id, String mb_insdate) {
+		this.pnum = pnum;
+		this.ptemppw = ptemppw;
 		this.mb_id = mb_id;
-		this.mb_pw = mb_pw;
-		this.mb_num = mb_num;
+		this.mb_insdate = mb_insdate;
 	}
 
 	// getter
+	public String getPnum() {
+		return pnum;
+	}
+	public String getPtemppw() {
+		return ptemppw;
+	}
 	public String getMb_id() {
 		return mb_id;
 	}
-	public String getMb_pw() {
-		return mb_pw;
-	}
-	public String getMb_num() {
-		return mb_num;
+	public String getMb_insdate() {
+		return mb_insdate;
 	}
 	
 	// setter
+	public void setPnum(String pnum) {
+		this.pnum = pnum;
+	}
+	public void setPtemppw(String ptemppw) {
+		this.ptemppw = ptemppw;
+	}
 	public void setMb_id(String mb_id) {
 		this.mb_id = mb_id;
 	}
-	public void setMb_pw(String mb_pw) {
-		this.mb_pw = mb_pw;
-	}
-	public void setMb_num(String mb_num) {
-		this.mb_num = mb_num;
+	public void setMb_insdate(String mb_insdate) {
+		this.mb_insdate = mb_insdate;
 	}
 	
+	// 매개변수 확인
+	public static void printVO(NetLoginVO lvo) {
+		logger.info("NetLoginVO printVO 데이터 확인 시작 >>> : ");
+		
+		logger.info("lvo.getPnum() >>> : " + lvo.getPnum());
+		logger.info("lvo.getPtemppw() >>> : " + lvo.getPtemppw());
+		logger.info("lvo.getMb_id() >>> : " + lvo.getMb_id());
+		logger.info("입력일 >>> : " + lvo.getMb_insdate());
+	}
 }

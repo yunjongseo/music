@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.netmusic.login.vo.NetLoginVO;
-import com.netmusic.login.vo.TempAuthNumVO;
-import com.netmusic.login.vo.TempPwVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 @Repository
@@ -20,35 +18,19 @@ public class NetLoginDAOImpl implements NetLoginDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<NetLoginVO> loginCheck(NetLoginVO lvo) {
+	public List<NetMemberVO> loginCheck(NetMemberVO mvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetLoginDAOImpl loginCheck() 함수 진입 >>> :");
 		
-		return sqlSession.selectList("loginCheck", lvo);
+		return sqlSession.selectList("loginCheck", mvo);
 	}
 
 	@Override
-	public List<NetMemberVO> emailCheck(NetMemberVO mvo) {
+	public List<NetMemberVO> idCheck(NetMemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("NetLoginDAOImpl emailCheck() 함수 진입 >>> :");
+		logger.info("NetLoginDAOImpl idCheck() 함수 진입 >>> :");
 		
-		return sqlSession.selectList("emailCheck", mvo);
-	}
-
-	@Override
-	public int tempAuthNumInsert(TempAuthNumVO tvo) {
-		// TODO Auto-generated method stub
-		logger.info("NetLoginDAOImpl tempAuthNumInsert() 함수 진입 >>> :");
-		
-		return (Integer)sqlSession.insert("tempAuthNumInsert", tvo);
-	}
-
-	@Override
-	public List<NetMemberVO> emailIdFind(NetMemberVO mvo) {
-		// TODO Auto-generated method stub
-		logger.info("NetLoginDAOImpl emailIdFind() 함수 진입 >>> :");
-		
-		return sqlSession.selectList("emailIdFind", mvo);
+		return sqlSession.selectList("idCheck", mvo);
 	}
 
 	@Override
@@ -60,19 +42,11 @@ public class NetLoginDAOImpl implements NetLoginDAO {
 	}
 
 	@Override
-	public List<NetMemberVO> pwEmailCheck(NetMemberVO mvo) {
-		// TODO Auto-generated method stub
-		logger.info("NetLoginDAOImpl pwEmailCheck() 함수 진입 >>> :");
-		
-		return sqlSession.selectList("pwEmailCheck", mvo);
-	}
-
-	@Override
-	public int tempPwInsert(TempPwVO tvo) {
+	public int tempPwInsert(NetLoginVO lvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetLoginDAOImpl tempPwInsert() 함수 진입 >>> :");
 		
-		return (Integer)sqlSession.insert("tempPwInsert", tvo);
+		return (Integer)sqlSession.insert("tempPwInsert", lvo);
 	}
 
 	@Override

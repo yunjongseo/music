@@ -13,47 +13,18 @@
 		AND		A.MB_PW = #{mb_pw, jdbcType=VARCHAR}
 	</select>
 	
-	<!-- 이메일로 ID 찾기 -->
-	<select id="emailCheck" parameterType="memberVO" resultType="memberVO">
-		SELECT	A.MB_NAME		MB_NAME,
-				A.MB_EMAIL		MB_EMAIL
-		FROM	NET_MEMBER A
-		WHERE	A.MB_DELYN = 'Y'
-		AND		A.MB_NAME = #{mb_name, jdbcType=VARCHAR}
-		AND		A.MB_EMAIL = #{mb_email, jdbcType=VARCHAR}
-	</select>
-	
-	<insert id="tempAuthNumInsert" parameterType="authnumVO">
-		<selectKey keyProperty="anum" resultType="int" order="BEFORE">
-			SELECT AUTHNUM_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
-		INSERT INTO TEMP_AUTH_NUM1	(ANUM, AUTHNUM, MB_EMAIL, MB_INSDATE)
-							VALUES	(#{anum, jdbcType=INTEGER}, 
-									 #{authnum, jdbcType=VARCHAR},
-									 #{mb_email, jdbcType=VARCHAR}, 
-									 SYSDATE)
-	</insert>
-	
-	<select id="emailIdFind" parameterType="memberVO" resultType="memberVO">
-		SELECT	A.MB_ID			MB_ID,
-				A.MB_INSDATE	MB_INSDATE
-		FROM	NET_MEMBER A,
-				TEMP_AUTH_NUM1 B
-		WHERE	A.MB_DELYN = 'Y'
-		AND		A.MB_EMAIL   = B.MB_EMAIL
-		AND		B.MB_EMAIL   = #{tempauthmemail, jdbcType=VARCHAR}
-		AND		B.AUTHNUM    = #{tempauthnum, jdbcType=VARCHAR}
-	</select>
-	
-	<!--  아이디로 비밀번호 찾기 -->
-	<select id="pwIdCheck" parameterType="memberVO" resultType="memberVO">
+	<!-- ID 찾기 -->
+	<select id="idCheck" parameterType="memberVO" resultType="memberVO">
 		SELECT	A.MB_ID		MB_ID
 		FROM	NET_MEMBER A
 		WHERE	A.MB_DELYN = 'Y'
-		AND		A.MB_ID = #{mb_id, jdbcType=VARCHAR}
+		AND		A.MB_NAME = #{mb_name, jdbcType=VARCHAR}
+		AND		A.MB_HP = #{mb_hp, jdbcType=VARCHAR}
+		AND		A.MB_BIRTH = #{mb_birth, jdbcType=VARCHAR}
 	</select>
 	
-	<select id="pwEmailCheck" parameterType="memberVO" resultType="memberVO">
+	<!--  비밀번호 : 아이디 체크-->
+	<select id="pwIdCheck" parameterType="memberVO" resultType="memberVO">
 		SELECT	A.MB_ID		MB_ID,
 				A.MB_EMAIL	MB_EMAIL
 		FROM	NET_MEMBER A
@@ -62,7 +33,7 @@
 		AND		A.MB_EMAIL = #{mb_email, jdbcType=VARCHAR}
 	</select>
 	
-	<insert id="tempPwInsert" parameterType="pwVO">
+	<insert id="tempPwInsert" parameterType="loginVO">
 		<selectKey keyProperty="pnum" resultType="String" order="BEFORE">
 			SELECT LPAD((NVL(MAX(A.PNUM), 0)) + 1, 8, '0') PNUM FROM TEMP_PW1 A
 		</selectKey>

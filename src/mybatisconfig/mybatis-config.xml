@@ -5,8 +5,7 @@
 <configuration>
     <typeAliases>
     	<typeAlias type="com.netmusic.member.vo.NetMemberVO" alias="memberVO"/>
-    	<typeAlias type="com.netmusic.login.vo.TempAuthNumVO" alias="authnumVO" />
-    	<typeAlias type="com.netmusic.login.vo.TempPwVO" alias="pwVO" />
+    	<typeAlias type="com.netmusic.login.vo.NetLoginVO" alias="loginVO" />
     	<typeAlias type="com.netmusic.member.vo.NetFollowVO" alias="followVO"/>
 	</typeAliases>
 </configuration>

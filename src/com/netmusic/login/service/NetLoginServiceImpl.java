@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.netmusic.login.dao.NetLoginDAO;
 import com.netmusic.login.vo.NetLoginVO;
-import com.netmusic.login.vo.TempAuthNumVO;
-import com.netmusic.login.vo.TempPwVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 @Service
@@ -26,35 +24,19 @@ public class NetLoginServiceImpl implements NetLoginService {
 	}
 	
 	@Override
-	public List<NetLoginVO> loginCheck(NetLoginVO lvo) {
+	public List<NetMemberVO> loginCheck(NetMemberVO mvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetLoginServiceImpl loginCheck() 함수 진입 >>> :");
 		
-		return netLoginDAO.loginCheck(lvo);
+		return netLoginDAO.loginCheck(mvo);
 	}
 	
 	@Override
-	public List<NetMemberVO> emailCheck(NetMemberVO mvo) {
+	public List<NetMemberVO> idCheck(NetMemberVO mvo) {
 		// TODO Auto-generated method stub
-		logger.info("NetLoginServiceImpl emailCheck() 함수 진입 >>> :");
+		logger.info("NetLoginServiceImpl idCheck() 함수 진입 >>> :");
 		
-		return netLoginDAO.emailCheck(mvo);
-	}
-
-	@Override
-	public int tempAuthNumInsert(TempAuthNumVO tvo) {
-		// TODO Auto-generated method stub
-		logger.info("NetLoginServiceImpl tempAuthNumInsert() 함수 진입 >>> :");
-		
-		return netLoginDAO.tempAuthNumInsert(tvo);
-	}
-
-	@Override
-	public List<NetMemberVO> emailIdFind(NetMemberVO mvo) {
-		// TODO Auto-generated method stub
-		logger.info("NetLoginServiceImpl emailIdFind() 함수 진입 >>> :");
-		
-		return netLoginDAO.emailIdFind(mvo);
+		return netLoginDAO.idCheck(mvo);
 	}
 
 	@Override
@@ -66,19 +48,11 @@ public class NetLoginServiceImpl implements NetLoginService {
 	}
 
 	@Override
-	public List<NetMemberVO> pwEmailCheck(NetMemberVO mvo) {
-		// TODO Auto-generated method stub
-		logger.info("NetLoginServiceImpl pwEmailCheck() 함수 진입 >>> :");
-		
-		return netLoginDAO.pwEmailCheck(mvo);
-	}
-
-	@Override
-	public int tempPwInsert(TempPwVO tvo) {
+	public int tempPwInsert(NetLoginVO lvo) {
 		// TODO Auto-generated method stub
 		logger.info("NetLoginServiceImpl tempPwInsert() 함수 진입 >>> :");
 		
-		return netLoginDAO.tempPwInsert(tvo);
+		return netLoginDAO.tempPwInsert(lvo);
 	}
 
 	@Override

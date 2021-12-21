@@ -2,7 +2,6 @@ package com.netmusic.member.service;
 
 import java.util.List;
 
-import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;
 
