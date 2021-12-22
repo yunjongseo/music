@@ -103,9 +103,6 @@ public class NetMemberController {
 			mb_liking += liking[i] + " ";
 		}
 		mvo.setMb_liking(mb_liking);
-		
-		logger.info("11111 >> : " + mvo.getMb_num());
-		logger.info("11111 >> : " + mvo.getMb_name());
 
 		int nCnt = netMemberService.memberInsert(mvo);
 			
@@ -179,11 +176,8 @@ public class NetMemberController {
 		logger.info("NetMemberController memfollowSelect() 진입 >>> : ");
 		
 		// 세션에 있는 회원 아이디를 받음 -> mb_id 저장
-		NetLoginVO lvo_data = (NetLoginVO)hs.getAttribute("resultList"); 
-		String mb_id = lvo_data.getMb_id();
-		 
-		
-		//String mb_id = "1515";
+		NetMemberVO mvo_data = (NetMemberVO)hs.getAttribute("result"); 
+		String mb_id = mvo_data.getMb_id();
 		
 		logger.info("NetMemberController memfollowSelect mb_id >>> : " + mb_id);
 		

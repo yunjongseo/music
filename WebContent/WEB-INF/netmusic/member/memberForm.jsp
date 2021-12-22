@@ -197,15 +197,15 @@
 	<tr>
 		<td>아이디</td>
 		<td>
-			<input type="text" name="mb_id" id="mb_id"/>
+			<input type="text" name="mb_id" id="mb_id">
 			<input class="btn-group" type="button" name="mb_idbtn" id="mb_idbtn" 
-				value="아이디 중복 확인"/>
+				value="아이디 중복 확인">
 		</td>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
 		<td>
-			<input type="password" name="mb_pw" id="mb_pw"/><br>
+			<input type="password" name="mb_pw" id="mb_pw"><br>
 			<input type="password" name="mb_pw_r" id="mb_pw_r" placeholder="비밀번호 확인"/>
 		 	<input class="btn-group" type="button" value="비밀번호 확인" id="pwCheck"/><br>
 		</td>
@@ -213,21 +213,21 @@
 	<tr>
 		<td>이름</td>
 		<td>
-			<input type="text" name="mb_name" id="mb_name"/>
+			<input type="text" name="mb_name" id="mb_name">
 		</td>
 	</tr>
 	<tr>
 		<td>성별</td>
 		<td>
-			<input type="radio" name="mb_gen" value="남자" checked />남자&nbsp;&nbsp;
-			<input type="radio" name="mb_gen" value="여자"/>여자
+			<input type="radio" name="mb_gen" value="남자" checked>남자&nbsp;&nbsp;
+			<input type="radio" name="mb_gen" value="여자">여자
 		</td>
 	</tr>
 	<tr>
 		<td>생년월일</td>
 		<td>
 			<input type="text" name="mb_birth" id="mb_birth" placeholder="년(4자)"
-					maxlength="4" style="width:100px"/>
+					maxlength="4" style="width:100px">
 			<select name="mb_birth1" id="mb_birth1"></select>
 			<select name="mb_birth2" id="mb_birth2"></select>
 		</td>
@@ -255,7 +255,7 @@
 	<tr>
 		<td>사진</td>
 		<td>
-			<input class="btn-group" type="file" name="mb_photo" id="mb_photo">
+			<input type="file" name="mb_photo" id="mb_photo">
 		</td>
 	</tr>
 	<tr>

@@ -18,7 +18,7 @@
 								,MB_LIKING	<!-- placeholer 10 -->
 								,MB_INSDATE	<!-- placeholer 11 -->
 								,MB_UPDDATE	<!-- placeholer 12 -->
-								,MB_DELYN	<!-- placeholer 23 -->
+								,MB_DELYN	<!-- placeholer 13 -->
 							) 
 					VALUES
 							( 	 
@@ -34,7 +34,7 @@
 								,#{mb_liking, jdbcType=VARCHAR} 	<!-- placeholer 10 -->
 								,SYSDATE    						<!-- placeholer 11 -->
 								,SYSDATE 							<!-- placeholer 12 -->
-								,'Y' 								<!-- placeholer 23 -->
+								,'Y' 								<!-- placeholer 13 -->
 							) 
 	</insert>
 	
