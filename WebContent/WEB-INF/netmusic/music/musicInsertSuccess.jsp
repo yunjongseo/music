@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Net Music</title>
+<title>음원 등록 성공</title>
 </head>
 <body>
-<a href="memForm.a">회원가입</a><br>
-<a href="loginForm.a">로그인</a><br>
+<script>
+	alert("음원을 등록하였습니다.");
+	location.href="memberSelectAll.a";
+</script>
 </body>
 </html>

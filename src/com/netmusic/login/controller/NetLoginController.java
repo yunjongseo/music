@@ -54,19 +54,23 @@ public class NetLoginController {
 		String mb_pw = mvo.getMb_pw();
 		logger.info("로그인한 PW >>>> : " + mb_pw);
 		
-		// 세션에 세팅
-		hs.setAttribute("resultList", mvo);
 		// 리스트 세팅
 		List<NetMemberVO> resultList = null;
 		
 		resultList = netLoginService.loginCheck(mvo);
-		System.out.println("resultList >>> : DB에서 리턴된 리스트의 사이즈를 출력합니다 : " + resultList.size());
+		logger.info("resultList >>> : DB에서 리턴된 리스트의 사이즈를 출력합니다 : " + resultList.size());
 
 		if (resultList.size() > 0) {
-
+			
+			NetMemberVO mvo_ = new NetMemberVO();
+			mvo_ = resultList.get(0);
+			
+			// 세션에 세팅
+			hs.setAttribute("result", mvo_);
+			
 			msg = "success";
 		} else if (resultList.size() == 0) {
-			System.out.println("DB에서 받아온 데이터가 없습니다. >>> : 아이디와 비밀번호를 다시 입력해주세요.");
+			logger.info("DB에서 받아온 데이터가 없습니다. >>> : 아이디와 비밀번호를 다시 입력해주세요.");
 			
 			msg = "fail";
 		}

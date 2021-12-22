@@ -120,6 +120,7 @@
 	} // end of for
 %>
 </div>
+<a href="musicForm.a">음원 등록</a><br>
 </form>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.netmusic.common.dao.ChabunDAO;
 import com.netmusic.member.vo.NetMemberVO;
+import com.netmusic.music.vo.NetMusicVO;
 
 @Service
 @Transactional
@@ -23,8 +24,16 @@ public class ChabunServiceImpl implements ChabunService {
 	@Override
 	public NetMemberVO getMemChabun() {
 		// TODO Auto-generated method stub
-		logger.info("ChabunServiceImpl getMemChabun >>> : ");
+		logger.info("ChabunServiceImpl getMemChabun() 진입 >>> : ");
 		return chabunDAO.getMemChabun();
+	}
+
+	@Override
+	public NetMusicVO getMusicChabun() {
+		// TODO Auto-generated method stub
+		logger.info("ChabunServiceImpl getMusicChabun() 진입 >>> : ");
+		
+		return chabunDAO.getMusicChabun();
 	}
 
 }

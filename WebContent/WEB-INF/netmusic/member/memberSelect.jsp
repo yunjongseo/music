@@ -90,7 +90,9 @@
 				<li>
 					<div class="profile">
 						<div class="profile-card">
-							<%-- <img src="netmusic/fileupload/member/sm_<%= mvo.getMb_photo() %>"> --%>
+							<img src="/jsMusic/fileupload/member/sm_<%= list.get(0).getMb_photo() %>"
+							width="100" height="100" alt="image"
+							style="margin:23px auto;">
 						</div>
 						<p class="profile-card"><%= list.get(0).getMb_name() %></p>
 						<button class="btn" id="btn" type="button">

@@ -9,4 +9,7 @@
 	SELECT NVL(MAX(SUBSTR(A.MB_NUM, -4)), 0) + 1  MB_NUM FROM NET_MEMBER A
 </select>
 
+<select id="getMusicChabun" resultType="musicVO">
+	SELECT NVL(MAX(SUBSTR(A.MS_NUM, -4)), 0) + 1  MS_NUM FROM NET_MUSIC A
+</select>
 </mapper>			
