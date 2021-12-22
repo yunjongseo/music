@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.dao.NetMemberDAO;
 import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;

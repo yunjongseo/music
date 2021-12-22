@@ -226,9 +226,6 @@
 	<tr>
 		<td>생년월일</td>
 		<td>
-			<!-- <input type="text" name="mb_birth" id="mb_birth" 
-				placeholder="ex)20200101" minlength="8 "maxlength="8" 
-				onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" /> -->
 			<input type="text" name="mb_birth" id="mb_birth" placeholder="년(4자)"
 					maxlength="4" style="width:100px"/>
 			<select name="mb_birth1" id="mb_birth1"></select>

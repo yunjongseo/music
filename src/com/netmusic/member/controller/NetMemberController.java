@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,12 +20,9 @@ import com.netmusic.common.CommonUtils;
 import com.netmusic.common.FileUploadUtil;
 import com.netmusic.common.service.ChabunService;
 import com.netmusic.login.vo.NetLoginVO;
-import com.netmusic.main.vo.NetMainVO;
 import com.netmusic.member.service.NetMemberService;
 import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 public class NetMemberController {
@@ -154,9 +150,9 @@ public class NetMemberController {
 		if(listAll.size() > 0) {
 			
 			model.addAttribute("listAll", listAll);
-			return "main/search";
+			return "member/memberSelectAll";
 		}
-		return "board/springBoardSelectAllfail";
+		return "/";
 	}
 	
 	// 회원 조건 조회
