@@ -30,7 +30,7 @@
 			console.log("btn click() 함수 진입 >>> : ");
 			
 			$("#followForm").attr({
-				"action":"memberSelectAll.a",
+				"action":"mainpage.a",
 				"method":"GET",
 				"enctype":"application/x-www-form-urlencoded"
 			}).submit();

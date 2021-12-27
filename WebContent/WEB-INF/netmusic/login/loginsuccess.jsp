@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>로그인 성공</title>
 <script>
-	location.href="memberSelectAll.a";
+	location.href="mainpage.a";
 </script>
 </head>
 <body>

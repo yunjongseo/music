@@ -49,7 +49,8 @@
 		
 		SELECT	*	
 		FROM	NET_MEMBER A
-		WHERE	A.MB_DELYN  ='Y'
+		WHERE	A.MB_DELYN = 'Y'
+		AND		A.MB_ID != #{my_id, jdbcType=VARCHAR}
 		<if test="keyfilter=='key1'">
 			<![CDATA[AND A.MB_ID LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
 		</if>
@@ -71,5 +72,6 @@
 		FROM 	NET_MEMBER A 
 		WHERE 	A.MB_DELYN='Y' 
 		AND 	A.MB_NUM = #{mb_num, jdbcType=VARCHAR}
+		AND		A.MB_ID != #{my_id, jdbcType=VARCHAR}
 	</select>
 </mapper>

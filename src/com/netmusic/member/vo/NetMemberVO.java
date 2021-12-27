@@ -23,6 +23,9 @@ public class NetMemberVO {
 	// 검색 구분자 및 검색어
 	private String keyfilter;
 	private String keyword;
+	
+	// 로그인한 아이디
+	private String my_id;
 		
 	// 생성자
 	public NetMemberVO() {
@@ -34,7 +37,7 @@ public class NetMemberVO {
 						String mb_hp, String mb_email, String mb_photo, 
 						String mb_liking, String mb_insdate, String mb_upddate,
 						String mb_delyn, String keyfilter, String keyword,
-						String mb_follow) {
+						String mb_follow, String my_id) {
 		this.mb_num = mb_num;
 		this.mb_id = mb_id;
 		this.mb_pw = mb_pw;
@@ -51,6 +54,7 @@ public class NetMemberVO {
 		this.mb_delyn = mb_delyn;
 		this.keyfilter = keyfilter;
 		this.keyword = keyword;
+		this.my_id = my_id;
 	}
 
 	// getter
@@ -104,6 +108,10 @@ public class NetMemberVO {
 		return keyword;
 	}
 	
+	public String getMy_id() {
+		return my_id;
+	}
+	
 	// setter
 	public void setMb_num(String mb_num) {
 		this.mb_num = mb_num;
@@ -153,6 +161,10 @@ public class NetMemberVO {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	
+	public void setMy_id(String my_id) {
+		this.my_id = my_id;
 	}
 	
 	// 매개변수 확인

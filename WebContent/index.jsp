@@ -7,7 +7,6 @@
 <title>Net Music</title>
 </head>
 <body>
-<a href="memForm.a">회원가입</a><br>
 <a href="loginForm.a">로그인</a><br>
 </body>
 </html>
