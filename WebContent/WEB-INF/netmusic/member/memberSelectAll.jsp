@@ -121,6 +121,8 @@
 %>
 </div>
 <a href="musicForm.a">음원 등록</a><br>
+<a href="followlist.a">Follow List</a><br>
+<a href="followerlist.a">Follower List</a><br>
 </form>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>

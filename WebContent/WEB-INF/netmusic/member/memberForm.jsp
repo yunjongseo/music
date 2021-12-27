@@ -219,8 +219,8 @@
 	<tr>
 		<td>성별</td>
 		<td>
-			<input type="radio" name="mb_gen" value="남자" checked>남자&nbsp;&nbsp;
-			<input type="radio" name="mb_gen" value="여자">여자
+			<input type="radio" name="mb_gender" value="남자" checked>남자&nbsp;&nbsp;
+			<input type="radio" name="mb_gender" value="여자">여자
 		</td>
 	</tr>
 	<tr>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
 <%@ page import="com.netmusic.follow.vo.NetFollowVO" %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +25,7 @@
 	$(document).ready(function(){
 		
 		// 폼태그 데이터 JSP 보내기
-		$("#fbbtn").click(function(){
+		$("#fbtn").click(function(){
 			// alert("btn click() 함수 진입 >>> : ");
 			console.log("btn click() 함수 진입 >>> : ");
 			
@@ -42,34 +41,21 @@
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
-	Object obj = request.getAttribute("listS");
-	List<NetFollowVO> list = (List)obj;
-	Object obj1 = request.getAttribute("mb_name");
-	String mb_name = String.valueOf(obj1);
-	
-	int nCnt = list.size();
-	System.out.println("nCnt >>> : " + nCnt);
+	Object obj = request.getAttribute("mb_name");
+	String mb_name = String.valueOf(obj);
 %>
 <form name="followForm" id="followForm">
 <table class="table table-hover" align="center">
 	<tr>
 		<td><%= mb_name %> 님의 Follow List</td>
 	</tr>
-<%
-	for(int i=0; i < nCnt; i++){
-		NetFollowVO fvo = list.get(i);
-%>
 	<tr>
-		<td><img src="/jsMusic/fileupload/member/sm_<%= fvo.getFollow_photo() %>"></td>
-		<td><%= fvo.getMb_follow() %></td>
+		<td>Follow 없음</td>
 	</tr>
-<%
-	}
-%>
 	<tr>
 		<td align="center">
 			<br>
-			<input class="btn-group" type="button" value="메인으로" id="fbbtn">
+			<input class="btn-group" type="button" value="메인으로" id="fbtn">
 		</td>
 	</tr>
 </table>

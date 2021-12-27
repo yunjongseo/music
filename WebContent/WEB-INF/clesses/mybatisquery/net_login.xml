@@ -7,7 +7,9 @@
 	<select id="loginCheck" parameterType="memberVO" resultType="memberVO">
 		SELECT	A.MB_ID		MB_ID,
 				A.MB_PW		MB_PW,
-				A.MB_NUM 	MB_NUM
+				A.MB_NUM 	MB_NUM,
+				A.MB_NAME	MB_NAME,
+				A.MB_PHOTO	MB_PHOTO
 		FROM	NET_MEMBER A
 		WHERE	A.MB_DELYN = 'Y'
 		AND		A.MB_ID = #{mb_id, jdbcType=VARCHAR}

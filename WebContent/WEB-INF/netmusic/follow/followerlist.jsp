@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Follow List</title>
+<title>Follower List</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
 <style type="text/css">
@@ -53,15 +53,15 @@
 <form name="followForm" id="followForm">
 <table class="table table-hover" align="center">
 	<tr>
-		<td><%= mb_name %> 님의 Follow List</td>
+		<td><%= mb_name %> 님의 Follower List</td>
 	</tr>
 <%
 	for(int i=0; i < nCnt; i++){
 		NetFollowVO fvo = list.get(i);
 %>
 	<tr>
-		<td><img src="/jsMusic/fileupload/member/sm_<%= fvo.getFollow_photo() %>"></td>
-		<td><%= fvo.getMb_follow() %></td>
+		<td><img src="/jsMusic/fileupload/member/sm_<%= fvo.getFollower_photo() %>"></td>
+		<td><%= fvo.getFollower_id() %></td>
 	</tr>
 <%
 	}
