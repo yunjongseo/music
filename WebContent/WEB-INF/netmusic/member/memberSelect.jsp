@@ -64,7 +64,95 @@
 		color: gray; 
 		text-align: center;
 	}
+	
+	#fbtn{
+		background-color:#FF7878;
+		width:130px;
+	}
 </style>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		// mouseover, mouseout 이벤트
+		$("#fbtn").mouseover(function(){
+				
+			var follow_id = $("#follow_id").val();
+			console.log("follow_id >>> : " + follow_id);
+			//alert("데이터 전달 >>> : " + follow_id);
+			// callAjaxLogin()함수 호출
+			callAjaxLogin(follow_id);
+			
+			// callAjaxLogin() 함수
+			function callAjaxLogin(follow_id){
+				
+				//alert(follow_id);
+
+				let fcheckURL = "followcheck.a";
+				let reqType = "GET";
+				let dataParam = { 
+						follow_id : follow_id
+				};
+				
+				$.ajax({
+					url : fcheckURL,
+					type : reqType,
+					data : dataParam,
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : whenSuccess,
+					error : whenError
+				});
+					
+				function whenSuccess(resData){
+					//alert("회원 데이터 확인 결과 >>> : " + resData);
+					
+					// 이미 팔로우 중일 때
+					 if (resData == "fail" || resData == null ) {
+
+						 $("#fbtn").text("unfollow");
+						 
+						// 폼태그 데이터 JSP 보내기
+						$("#fbtn").click(function(){
+							// alert("btn click() 함수 진입 >>> : ");
+							console.log("fbtn click() 함수 진입 >>> : ");
+							
+							$("#followForm").attr({
+								"action":"delFollow.a",
+								"method":"GET",
+								"enctype":"application/x-www-form-urlencoded"
+							}).submit();
+						});
+						
+					// 팔로우 중이지 않을 때
+					} else if (resData == "success") {
+						
+						// 폼태그 데이터 JSP 보내기
+						$("#fbtn").click(function(){
+							// alert("btn click() 함수 진입 >>> : ");
+							console.log("fbtn click() 함수 진입 >>> : ");
+							
+							$("#followForm").attr({
+								"action":"addFollow.a",
+								"method":"GET",
+								"enctype":"application/x-www-form-urlencoded"
+							}).submit();
+						}); 
+					}	
+				}
+					
+				function whenError(e){
+					alert("에러가 발생했습니다. >>> : " + e.responseText);
+				}
+			}
+		});
+		
+		$("#fbtn").mouseout(function(){
+			history.go(0);
+		});
+
+		//##########################################
+	});
+</script>
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -77,7 +165,7 @@
 	
 	NetMemberVO mvo = new NetMemberVO();
 %>
-<form>
+<form name="followForm" id="followForm">
 	<div class="wrap">
 		<!-- 넷 뮤직 로고 -->
 		<div>
@@ -95,9 +183,12 @@
 							style="margin:23px auto;">
 						</div>
 						<p class="profile-card"><%= list.get(0).getMb_name() %></p>
-						<button class="btn" id="btn" type="button">
-						<img class="btn-img" src="img\follow.jfif">follow</button>
-						<a href="memfollowSelect.a">Follow List</a>
+						<button class="fbtn" id="fbtn" type="button">follow</button>
+						<a href="followlist.a">Follow List</a>
+						<input type="hidden" name="follow_id" id="follow_id" 
+							value="<%= list.get(0).getMb_id() %>">
+						<input type="hidden" name="follow_photo" id="follow_photo" 
+							value="<%= list.get(0).getMb_photo() %>">
 					</div>
 				</li>
 				</ul>

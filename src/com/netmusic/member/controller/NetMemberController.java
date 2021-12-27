@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,7 @@ import com.netmusic.common.ChabunUtil;
 import com.netmusic.common.CommonUtils;
 import com.netmusic.common.FileUploadUtil;
 import com.netmusic.common.service.ChabunService;
-import com.netmusic.login.vo.NetLoginVO;
 import com.netmusic.member.service.NetMemberService;
-import com.netmusic.member.vo.NetFollowVO;
 import com.netmusic.member.vo.NetMemberVO;
 
 @Controller
@@ -104,10 +101,13 @@ public class NetMemberController {
 		}
 		mvo.setMb_liking(mb_liking);
 
+		netMemberService.memberInsert(mvo);
+		
+		/*
 		int nCnt = netMemberService.memberInsert(mvo);
-			
-		if (nCnt > 0) { return "login/loginForm";}
-		return "";
+		 	if (nCnt > 0) { return "login/loginForm";} return "";
+		 */
+		return "login/loginForm";
 	}
 	
 	// 아이디 중복 체크하기
@@ -143,13 +143,9 @@ public class NetMemberController {
 		List<NetMemberVO> listAll = netMemberService.memberSelectAll(mvo);
 		logger.info("NetMemberController memberSelectAll listAll.size() >>> : " 
 					+ listAll.size());
-		
-		if(listAll.size() > 0) {
 			
-			model.addAttribute("listAll", listAll);
-			return "member/memberSelectAll";
-		}
-		return "/";
+		model.addAttribute("listAll", listAll);
+		return "member/memberSelectAll";
 	}
 	
 	// 회원 조건 조회
@@ -162,35 +158,8 @@ public class NetMemberController {
 		List<NetMemberVO> listS = netMemberService.memberSelect(mvo);
 		logger.info("NetMemberController memberSelect listS.size() >>> : " +
 		listS.size());
-		
-		if(listS.size() == 1) {
-			model.addAttribute("listS", listS);
-			return "member/memberSelect";
-		}
-		return "/";
-	}
-	
-	// 내 팔로우 리스트
-	@RequestMapping(value="memfollowSelect", method=RequestMethod.GET)
-	public String memfollowSelect(NetFollowVO fvo, Model model, HttpSession hs) {
-		logger.info("NetMemberController memfollowSelect() 진입 >>> : ");
-		
-		// 세션에 있는 회원 아이디를 받음 -> mb_id 저장
-		NetMemberVO mvo_data = (NetMemberVO)hs.getAttribute("result"); 
-		String mb_id = mvo_data.getMb_id();
-		
-		logger.info("NetMemberController memfollowSelect mb_id >>> : " + mb_id);
-		
-		fvo.setMb_id(mb_id);
-		
-		List<NetFollowVO> listS = netMemberService.memFollowSelect(fvo);
-		logger.info("NetMemberController memfollowSelect listS.size() >>> : " +
-		listS.size());
-		
-		if(listS.size() != 0) {
-			model.addAttribute("listS", listS);
-			return "member/memberfollow";
-		}
-		return "/";
+
+		model.addAttribute("listS", listS);
+		return "member/memberSelect";
 	}
 }

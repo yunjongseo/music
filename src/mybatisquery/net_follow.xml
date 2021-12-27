@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                 
+<mapper namespace="com.netmusic.follow.dao.NetFollowDAO">
+
+	<!-- Follow List -->
+	<select id="followList" parameterType="followVO" resultType="followVO">
+		SELECT	 A.MB_ID		MB_ID
+				,A.MB_FOLLOW	MB_FOLLOW
+				,A.FOLLOW_PHOTO	FOLLOW_PHOTO
+				,TO_CHAR(A.MB_INSDATE, 'YYYY-MM-DD') MB_INSDATE
+				,TO_CHAR(A.MB_UPDDATE, 'YYYY-MM-DD') MB_UPDDATE
+		FROM 	NET_FOLLOW A 
+		WHERE 	A.MB_DELYN='Y' 
+		AND 	A.MB_ID = #{mb_id, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- Follower List -->
+	<select id="followerList" parameterType="followVO" resultType="followVO">
+		SELECT	 A.MB_ID			MB_ID
+				,A.FOLLOWER_ID		FOLLOWER_ID
+				,A.FOLLOWER_PHOTO	FOLLOWER_PHOTO
+				,TO_CHAR(A.MB_INSDATE, 'YYYY-MM-DD') MB_INSDATE
+				,TO_CHAR(A.MB_UPDDATE, 'YYYY-MM-DD') MB_UPDDATE
+		FROM 	NET_FOLLOWER A 
+		WHERE 	A.MB_DELYN='Y' 
+		AND 	A.MB_ID = #{mb_id, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- Follow 중복 체크 -->
+	<select id="followcheck" parameterType="followVO" resultType="followVO">
+		SELECT 	A.MB_ID 	MB_ID
+		FROM 	NET_FOLLOW A 
+		WHERE 	MB_DELYN = 'Y'
+		AND     A.MB_ID = #{mb_id, jdbcType=VARCHAR}
+		AND     A.MB_FOLLOW = #{mb_follow, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- Follow 추가 -->
+	<insert id="followInsert" parameterType="followVO">
+		INSERT INTO NET_FOLLOW( 	 
+								 MB_ID 			<!-- placeholer 1 -->
+								,MB_FOLLOW 		<!-- placeholer 2 --> 
+								,FOLLOW_PHOTO	<!-- placeholer 3 -->
+								,MB_INSDATE		<!-- placeholer 4 -->
+								,MB_UPDDATE		<!-- placeholer 5 -->
+								,MB_DELYN		<!-- placeholer 6 -->
+							) 
+					VALUES
+							( 	 
+								 #{mb_id, jdbcType=VARCHAR} 		<!-- placeholer 1 -->
+								,#{mb_follow, jdbcType=VARCHAR} 	<!-- placeholer 2 --> 
+								,#{follow_photo, jdbcType=VARCHAR} 	<!-- placeholer 3 -->
+								,SYSDATE    						<!-- placeholer 4 -->
+								,SYSDATE 							<!-- placeholer 5 -->
+								,'Y' 								<!-- placeholer 6 -->
+							) 	
+	</insert>
+	
+	<!-- Follower 추가 -->
+	<insert id="followerInsert" parameterType="followVO">
+		INSERT INTO NET_FOLLOWER( 	 
+								 MB_ID 			<!-- placeholer 1 -->
+								,FOLLOWER_ID 	<!-- placeholer 2 --> 
+								,FOLLOWER_PHOTO	<!-- placeholer 3 -->
+								,MB_INSDATE		<!-- placeholer 4 -->
+								,MB_UPDDATE		<!-- placeholer 5 -->
+								,MB_DELYN		<!-- placeholer 6 -->
+							) 
+					VALUES
+							( 	 
+								 #{mb_follow, jdbcType=VARCHAR} 	<!-- placeholer 1 -->
+								,#{mb_id, jdbcType=VARCHAR} 		<!-- placeholer 2 --> 
+								,#{mb_photo, jdbcType=VARCHAR} 	<!-- placeholer 3 -->
+								,SYSDATE    						<!-- placeholer 4 -->
+								,SYSDATE 							<!-- placeholer 5 -->
+								,'Y' 								<!-- placeholer 6 -->
+							) 	
+	</insert>
+	
+	<!-- Follow 삭제 -->
+	<update id="followDelete" parameterType="followVO">
+		UPDATE 	NET_FOLLOW 
+		SET 	MB_DELYN = 'N', 
+				MB_UPDDATE = SYSDATE
+		WHERE 	MB_DELYN = 'Y' 
+		AND 	MB_ID = #{mb_id, jdbcType=VARCHAR}
+		AND 	MB_FOLLOW = #{mb_follow, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- Follower 삭제 -->
+	<update id="followerDelete" parameterType="followVO">
+		UPDATE 	NET_FOLLOWER
+		SET 	MB_DELYN = 'N', 
+				MB_UPDDATE = SYSDATE
+		WHERE 	MB_DELYN = 'Y' 
+		AND 	MB_ID = #{mb_follow, jdbcType=VARCHAR}
+		AND 	FOLLOWER_ID = #{mb_id, jdbcType=VARCHAR}
+	</update>
+</mapper>

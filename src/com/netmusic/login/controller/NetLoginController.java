@@ -43,7 +43,7 @@ public class NetLoginController {
 	// 로그인
 	@RequestMapping(value="loginMsg", method=RequestMethod.POST)
 	@ResponseBody
-	public String login(HttpSession hs, NetMemberVO mvo, Model model) {
+	public String login(HttpSession hs, NetMemberVO mvo) {
 		logger.info("NetLoginController login() 진입 >>> : ");
 		
 		// ajax 데이터 리턴에 사용할 변수 선언
@@ -167,7 +167,8 @@ public class NetLoginController {
 			
 			// 멤버 테이블 비밀번호 데이터 임시 비밀번호로 업데이트
 			mvo.setMb_pw(temp_pw_num);
-			int pwUp = netLoginService.pwUpdate(mvo);
+			// int pwUp = netLoginService.pwUpdate(mvo);
+			netLoginService.pwUpdate(mvo);
 			
 			// 입력 성공하면 임시 비밀번호 이메일 보내기
 			// 메일 성공 여부는 ???
