@@ -16,8 +16,6 @@ import com.netmusic.common.ChabunUtil;
 import com.netmusic.common.CommonUtils;
 import com.netmusic.common.FileUploadUtil;
 import com.netmusic.common.service.ChabunService;
-import com.netmusic.login.controller.NetLoginController;
-import com.netmusic.login.vo.NetLoginVO;
 import com.netmusic.member.vo.NetMemberVO;
 import com.netmusic.music.service.NetMusicService;
 import com.netmusic.music.vo.NetMusicVO;
@@ -101,7 +99,7 @@ public class NetMusicController {
 		// PlayTime
 		String ms_playtime1 = fu.getParameter("ms_playtime1");
 		String ms_playtime2 = fu.getParameter("ms_playtime2");
-		ms_playtime1 = ms_playtime1 + ms_playtime2;
+		ms_playtime1 = ms_playtime1.concat(":").concat(ms_playtime2);
 		mvo.setMs_playtime(ms_playtime1);
 		// 앨범 사진
 		ArrayList<String> aFileName = fu.getFileNames();

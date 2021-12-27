@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,7 +131,7 @@ public class NetMemberController {
 	
 	// 회원 전체 조회
 	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
-	public String memberSelectAll(NetMemberVO mvo, Model model) {
+	public String memberSelectAll(NetMemberVO mvo, Model model, HttpSession hs) {
 		logger.info("NetMemberController memberSelectAll() 진입 >>> : ");
 		
 		logger.info("NetMemberController memberSelectAll() 진입 >>> : "
@@ -140,6 +141,13 @@ public class NetMemberController {
 		logger.info("NetMemberController memberSelectAll bvo.getKeyword() >>> : " 
 						+ mvo.getKeyword());
 		
+		// 로그인한 회원 아이디 세션으로 불러오기
+		NetMemberVO mvo_data = (NetMemberVO)hs.getAttribute("result"); 
+		String my_id = mvo_data.getMb_id();
+		logger.info("NetFollowController memberSelectAll my_id >>> : " + my_id);
+		
+		mvo.setMy_id(my_id);
+
 		List<NetMemberVO> listAll = netMemberService.memberSelectAll(mvo);
 		logger.info("NetMemberController memberSelectAll listAll.size() >>> : " 
 					+ listAll.size());
@@ -150,11 +158,18 @@ public class NetMemberController {
 	
 	// 회원 조건 조회
 	@RequestMapping(value="memberSelect", method=RequestMethod.GET)
-	public String memberSelect(NetMemberVO mvo, Model model) {
+	public String memberSelect(NetMemberVO mvo, Model model, HttpSession hs) {
 		logger.info("NetMemberController memberSelect() 진입 >>> : ");
 		logger.info("NetMemberController memberSelect mvo.getMb_num() >>> : "
 					+ mvo.getMb_num());
 		
+		// 로그인한 회원 아이디 세션으로 불러오기
+		NetMemberVO mvo_data = (NetMemberVO)hs.getAttribute("result"); 
+		String my_id = mvo_data.getMb_id();
+		logger.info("NetFollowController memberSelectAll my_id >>> : " + my_id);
+		
+		mvo.setMy_id(my_id);
+				
 		List<NetMemberVO> listS = netMemberService.memberSelect(mvo);
 		logger.info("NetMemberController memberSelect listS.size() >>> : " +
 		listS.size());

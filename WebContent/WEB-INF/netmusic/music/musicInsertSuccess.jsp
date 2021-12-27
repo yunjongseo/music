@@ -9,7 +9,7 @@
 <body>
 <script>
 	alert("음원을 등록하였습니다.");
-	location.href="memberSelectAll.a";
+	location.href="mainpage.a";
 </script>
 </body>
 </html>
