@@ -74,7 +74,7 @@
 
 	$(document).ready(function(){
 		
-		// mouseover, mouseout 이벤트
+		// mouseover
 		$("#fbtn").mouseover(function(){
 				
 			var follow_id = $("#follow_id").val();
@@ -146,8 +146,12 @@
 			}
 		});
 		
+		// mouseout
 		$("#fbtn").mouseout(function(){
-			history.go(0);
+			$("#fbtn").button().attr({
+				"class":"fbtn",
+				"id":"fbtn",
+			}).text("follow");
 		});
 	});
 </script>

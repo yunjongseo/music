@@ -1,5 +1,7 @@
 package com.netmusic.music.dao;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,14 @@ public class NetMusicDAOImpl implements NetMusicDAO {
 		logger.info("NetMusicDAOImpl musicInsert() 진입 >>> : ");
 		
 		return (Integer)sqlSession.insert("musicInsert", mvo);
+	}
+
+	@Override
+	public List<NetMusicVO> musicSelectAll(NetMusicVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMusicDAOImpl musicSelectAll() 진입 >>> : ");
+		
+		return sqlSession.selectList("musicSelectAll", mvo);
 	}
 
 }

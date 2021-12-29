@@ -41,4 +41,24 @@
 								,'Y' 								<!-- placeholer 15 -->
 							) 
 	</insert>
+	
+	<select id="musicSelectAll" parameterType="musicVO" resultType="musicVO">
+		
+		SELECT	*	
+		FROM	NET_MUSIC A
+		WHERE	A.MS_DELYN = 'Y'
+		<if test="keyfilter=='key3'">
+			<![CDATA[AND A.MS_NAME LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		</if>
+		<if test="keyfilter=='key4'">
+			<![CDATA[AND A.MS_SINGER LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		</if>
+		<if test="keyfilter=='key5'">
+			<![CDATA[AND A.MS_COMPOSER LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		</if>
+		<if test="keyfilter=='key6'">
+			<![CDATA[AND A.MB_NAME LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		</if>
+		ORDER BY 1
+	</select>
 </mapper>

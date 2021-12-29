@@ -41,7 +41,7 @@
 			console.log("mb_id >>> : " + mb_id);
 			var mb_pw = $("#mb_pw").val();
 			console.log("mb_pw >>> : " + mb_pw);
-			alert("데이터 전달 >>> : " + mb_id +" : "+ mb_pw);
+			//alert("데이터 전달 >>> : " + mb_id +" : "+ mb_pw);
 			// callAjaxLogin()함수 호출
 			callAjaxLogin(mb_id, mb_pw);
 			
@@ -50,7 +50,7 @@
 		// callAjaxLogin() 함수
 		function callAjaxLogin(mb_id, mb_pw){
 			
-			alert(mb_id +" : "+ mb_pw);
+			//alert(mb_id +" : "+ mb_pw);
 
 			let loginURL = "loginMsg.a";
 			let reqType = "POST";
@@ -69,7 +69,7 @@
 			});
 				
 			function whenSuccess(resData){
-				alert("회원 데이터 확인 결과 >>> : " + resData);
+				//alert("회원 데이터 확인 결과 >>> : " + resData);
 					
 				 if (resData == "success") {
 					

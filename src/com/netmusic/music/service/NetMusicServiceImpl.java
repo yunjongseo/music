@@ -1,5 +1,7 @@
 package com.netmusic.music.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,14 @@ public class NetMusicServiceImpl implements NetMusicService {
 		logger.info("NetMusicServiceImpl musicInsert() 진입 >>> : ");
 		
 		return netMusicDAO.musicInsert(mvo);
+	}
+
+	@Override
+	public List<NetMusicVO> musicSelectAll(NetMusicVO mvo) {
+		// TODO Auto-generated method stub
+		logger.info("NetMusicServiceImpl musicSelectAll() 진입 >>> : ");
+		
+		return netMusicDAO.musicSelectAll(mvo);
 	}
 
 }

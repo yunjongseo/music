@@ -18,6 +18,10 @@ public class NetMusicVO {
 	private String ms_upddate;
 	private String ms_delyn;
 	
+	// 검색 구분자 및 검색어
+	private String keyfilter;
+	private String keyword;
+	
 	// 생성자
 	public NetMusicVO() {
 	
@@ -27,7 +31,8 @@ public class NetMusicVO {
 					  String ms_album, String ms_name, String ms_nation, 
 					  String ms_singer, String ms_composer, String ms_release, 
 					  String ms_playtime, String ms_photo, String ms_music, 
-					  String ms_insdate, String ms_upddate, String ms_delyn) {
+					  String ms_insdate, String ms_upddate, String ms_delyn,
+					  String keyfilter, String keyword) {
 	
 		this.ms_num = ms_num;
 		this.mb_num = mb_num;
@@ -44,6 +49,8 @@ public class NetMusicVO {
 		this.ms_insdate = ms_insdate;
 		this.ms_upddate = ms_upddate;
 		this.ms_delyn = ms_delyn;
+		this.keyfilter = keyfilter;
+		this.keyword = keyword;
 	}
 
 	// getter
@@ -92,7 +99,12 @@ public class NetMusicVO {
 	public String getMs_delyn() {
 		return ms_delyn;
 	}
-	
+	public String getKeyfilter() {
+		return keyfilter;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
 	
 	// setter
 	public void setMs_num(String ms_num) {
@@ -139,5 +151,11 @@ public class NetMusicVO {
 	}
 	public void setMs_delyn(String ms_delyn) {
 		this.ms_delyn = ms_delyn;
+	}
+	public void setKeyfilter(String keyfilter) {
+		this.keyfilter = keyfilter;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }
