@@ -21,6 +21,8 @@ import com.netmusic.common.FileUploadUtil;
 import com.netmusic.common.service.ChabunService;
 import com.netmusic.member.service.NetMemberService;
 import com.netmusic.member.vo.NetMemberVO;
+import com.netmusic.music.service.NetMusicService;
+import com.netmusic.music.vo.NetMusicVO;
 
 @Controller
 public class NetMemberController {
@@ -28,13 +30,16 @@ public class NetMemberController {
 	
 	private NetMemberService netMemberService;
 	private ChabunService chabunService;
+	private NetMusicService netMusicService;
 	
 	// 생성자 오토와이어드 
 	@Autowired(required=false)	
 	public NetMemberController( NetMemberService netMemberService
-			               		 ,ChabunService chabunService) {
+			               		 ,ChabunService chabunService
+			               		 ,NetMusicService netMusicService) {
 		this.netMemberService = netMemberService;
 		this.chabunService = chabunService;
+		this.netMusicService = netMusicService;
 	}
 			
 	// 회원가입 입력 폼
@@ -108,7 +113,7 @@ public class NetMemberController {
 		int nCnt = netMemberService.memberInsert(mvo);
 		 	if (nCnt > 0) { return "login/loginForm";} return "";
 		 */
-		return "login/loginForm";
+		return "member/memberInsertSuccess";
 	}
 	
 	// 아이디 중복 체크하기
@@ -129,32 +134,71 @@ public class NetMemberController {
 		return msg;		
 	}
 	
+	/*
+	 * // 회원 전체 조회
+	 * 
+	 * @RequestMapping(value="memberSelectAll", method=RequestMethod.GET) public
+	 * String memberSelectAll(NetMemberVO mvo, Model model, HttpSession hs) {
+	 * logger.info("NetMemberController memberSelectAll() 진입 >>> : ");
+	 * 
+	 * logger.info("NetMemberController memberSelectAll() 진입 >>> : " +
+	 * "검색 관련 로그 ==========");
+	 * logger.info("NetMemberController memberSelectAll bvo.getKeyfilter() >>> : " +
+	 * mvo.getKeyfilter());
+	 * logger.info("NetMemberController memberSelectAll bvo.getKeyword() >>> : " +
+	 * mvo.getKeyword());
+	 * 
+	 * // 로그인한 회원 아이디 세션으로 불러오기 // 전체 조회에서 내 아이디 빼기 위한 데이터 NetMemberVO mvo_data =
+	 * (NetMemberVO)hs.getAttribute("result"); String my_id = mvo_data.getMb_id();
+	 * logger.info("NetFollowController memberSelectAll my_id >>> : " + my_id);
+	 * 
+	 * mvo.setMy_id(my_id);
+	 * 
+	 * List<NetMemberVO> listAll = netMemberService.memberSelectAll(mvo);
+	 * logger.info("NetMemberController memberSelectAll listAll.size() >>> : " +
+	 * listAll.size());
+	 * 
+	 * model.addAttribute("listAll", listAll); return "member/memberSelectAll1"; }
+	 */
 	// 회원 전체 조회
-	@RequestMapping(value="memberSelectAll", method=RequestMethod.GET)
-	public String memberSelectAll(NetMemberVO mvo, Model model, HttpSession hs) {
-		logger.info("NetMemberController memberSelectAll() 진입 >>> : ");
-		
-		logger.info("NetMemberController memberSelectAll() 진입 >>> : "
-				+ "검색 관련 로그 ==========");
-		logger.info("NetMemberController memberSelectAll bvo.getKeyfilter() >>> : " 
-						+ mvo.getKeyfilter());
-		logger.info("NetMemberController memberSelectAll bvo.getKeyword() >>> : " 
-						+ mvo.getKeyword());
-		
-		// 로그인한 회원 아이디 세션으로 불러오기
-		NetMemberVO mvo_data = (NetMemberVO)hs.getAttribute("result"); 
-		String my_id = mvo_data.getMb_id();
-		logger.info("NetFollowController memberSelectAll my_id >>> : " + my_id);
-		
-		mvo.setMy_id(my_id);
-
-		List<NetMemberVO> listAll = netMemberService.memberSelectAll(mvo);
-		logger.info("NetMemberController memberSelectAll listAll.size() >>> : " 
-					+ listAll.size());
-			
-		model.addAttribute("listAll", listAll);
-		return "member/memberSelectAll";
-	}
+	/*
+	 * @RequestMapping(value="memberSelectAll", method=RequestMethod.GET) public
+	 * String memberSelectAll(HttpServletRequest req, NetMemberVO mvo, Model model,
+	 * HttpSession hs) {
+	 * logger.info("NetMemberController memberSelectAll() 진입 >>> : ");
+	 * 
+	 * logger.info("NetMemberController memberSelectAll() 진입 >>> : " +
+	 * "검색 관련 로그 ==========");
+	 * logger.info("NetMemberController memberSelectAll Keyfilter >>> : " +
+	 * req.getParameter("second"));
+	 * logger.info("NetMemberController memberSelectAll bvo.getKeyword() >>> : " +
+	 * mvo.getKeyword());
+	 * 
+	 * String second = req.getParameter("second");
+	 * 
+	 * try { if(second.equals("key1") || second.equals("key2")) { // 로그인한 회원 아이디
+	 * 세션으로 불러오기 NetMemberVO mvo_data = (NetMemberVO)hs.getAttribute("result");
+	 * String my_id = mvo_data.getMb_id();
+	 * logger.info("NetFollowController memberSelectAll my_id >>> : " + my_id);
+	 * 
+	 * mvo.setKeyfilter(second); mvo.setMy_id(my_id);
+	 * 
+	 * List<NetMemberVO> listAll = netMemberService.memberSelectAll(mvo);
+	 * logger.info("NetMemberController memberSelectAll listAll.size() >>> : " +
+	 * listAll.size());
+	 * 
+	 * model.addAttribute("listAll", listAll); return "member/memberSelectAll";
+	 * }else { NetMusicVO mvo_ = new NetMusicVO();
+	 * 
+	 * mvo_.setKeyfilter(second); mvo_.setKeyword(mvo.getKeyword());
+	 * 
+	 * List<NetMusicVO> mlistAll = netMusicService.musicSelectAll(mvo_);
+	 * logger.info("NetMemberController memberSelectAll mlistAll.size() >>> : " +
+	 * mlistAll.size());
+	 * 
+	 * model.addAttribute("mlistAll", mlistAll); return "member/memberSelectAll"; }
+	 * }catch(Exception e) { } return "member/memberSelectAll"; }
+	 */
 	
 	// 회원 조건 조회
 	@RequestMapping(value="memberSelect", method=RequestMethod.GET)
